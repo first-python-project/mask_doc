@@ -18,12 +18,13 @@ def process_document(dir_path, masking_word_txt):
             return [line.strip() for line in lines]
         
     masking_word = read_masking_word(masking_word_txt)
+    upload_path = "uploads"
 
     # 경로의 doc, docx 파일 찾기 
     for file in os.listdir(dir_path):
         if file.endswith(".docx") or file.endswith(".doc"):
             input_doc = os.path.join(dir_path, file)
-            output_doc = os.path.join(dir_path, f"{os.path.splitext(file)[0]}.docx")
+            output_doc = os.path.join(upload_path, f"{os.path.splitext(file)[0]}_masking.docx")
 
             doc = Document(input_doc)
 
@@ -36,7 +37,5 @@ def process_document(dir_path, masking_word_txt):
                         file_doc.text = file_doc.text.replace(word, masking)
                         
             doc.save(output_doc)
-
-            
 
 process_document(dir_path,masking_word_txt)
