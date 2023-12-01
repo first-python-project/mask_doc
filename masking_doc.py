@@ -35,7 +35,7 @@ def process_document(dir_path, masking_word_txt):
                         masking = '*' * len(word)
                         file_doc.text = file_doc.text.replace(word, masking)
                         
-                doc.save(output_doc)
+            doc.save(output_doc)
 
             
 
